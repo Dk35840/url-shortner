@@ -1,6 +1,7 @@
 package com.dhananjay.urlshortner.controller;
 
 import com.dhananjay.urlshortner.exception.UrlNotFoundException;
+import com.dhananjay.urlshortner.services.UrlShortner;
 import com.dhananjay.urlshortner.services.UrlShortnerImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(UrlShortnerController.URLENDPOINT)
+@RequestMapping(UrlShortnerController.URL_ENDPOINT)
 public class UrlShortnerController {
 
-  public static final String URLENDPOINT = "/URLShortner";
+  public static final String URL_ENDPOINT = "/URLShortner";
   @Autowired
-  UrlShortnerImpl urlShortnerService;
+  UrlShortner urlShortnerService;
 
   @PostMapping("/registerUrl")
   ResponseEntity<String> registerUrl(String longUrl) {
