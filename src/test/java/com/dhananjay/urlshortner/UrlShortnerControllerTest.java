@@ -73,9 +73,10 @@ class UrlShortnerControllerTest {
 
     }
 
+    @Test
     public void getWrongUrl() throws Exception {
 
-        String shortUrl = registerUrlTest();
+        String shortUrl = "www.someRandomURL.com";
 
         URI uri = UriComponentsBuilder.fromPath(GetUrl).queryParam("shortUrl", shortUrl).build().toUri();
 

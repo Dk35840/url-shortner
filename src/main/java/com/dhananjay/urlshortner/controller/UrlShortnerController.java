@@ -2,7 +2,7 @@ package com.dhananjay.urlshortner.controller;
 
 import com.dhananjay.urlshortner.exception.UrlNotFoundException;
 import com.dhananjay.urlshortner.services.UrlShortner;
-import com.dhananjay.urlshortner.services.UrlShortnerImpl;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
