@@ -3,11 +3,10 @@ package com.dhananjay.urlshortner.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-
-
 @Entity
 public class UrlEntity {
-    public UrlEntity(){}
+    public UrlEntity() {
+    }
 
     @Id
     private String id;
@@ -31,10 +30,8 @@ public class UrlEntity {
     private String longUrl;
 
     public UrlEntity(String id, String longUrl) {
-        this.id=id;
-        this.longUrl=longUrl;
+        this.id = id;
+        this.longUrl = longUrl;
     }
-
-
 
 }

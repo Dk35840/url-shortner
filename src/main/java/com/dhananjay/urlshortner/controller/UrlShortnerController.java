@@ -1,6 +1,5 @@
 package com.dhananjay.urlshortner.controller;
 
-
 import com.dhananjay.urlshortner.exception.UrlNotFoundException;
 import com.dhananjay.urlshortner.services.UrlShortnerImpl;
 
@@ -14,41 +13,45 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(UrlShortnerController.URLENDPOINT)
 public class UrlShortnerController {
-    
-    public static final String URLENDPOINT="/URLShortner";
-    @Autowired
-    UrlShortnerImpl urlShortnerService;
 
-    @PostMapping("/registerUrl")
-    ResponseEntity<String> registerUrl(String longUrl){
+  public static final String URLENDPOINT = "/URLShortner";
+  @Autowired
+  UrlShortnerImpl urlShortnerService;
 
-        
-      String url= urlShortnerService.registerNewUrl(longUrl);
+  @PostMapping("/registerUrl")
+  ResponseEntity<String> registerUrl(String longUrl) {
 
-      if (url == null) {
-        return ResponseEntity.badRequest().body(null);
-      }
+    if (longUrl == null) {
+      return ResponseEntity.badRequest().body(null);
+    }
+    String url = urlShortnerService.registerNewUrl(longUrl);
 
-       return ResponseEntity.ok().body(url);
-
+    if (url == null) {
+      return ResponseEntity.badRequest().body(null);
     }
 
-    @GetMapping("/getUrl")
-    ResponseEntity<String> getUrl(String shortUrl){
+    return ResponseEntity.ok().body(url);
 
+  }
 
-        String url=null;
-        try {
-          url = urlShortnerService.getUrl(shortUrl);
-        } catch (UrlNotFoundException e) {
-          return ResponseEntity.badRequest().body(null);
-        }
+  @GetMapping("/getUrl")
+  ResponseEntity<String> getUrl(String shortUrl) {
 
-        if (url == null) {
-          return ResponseEntity.ok().body(null);
-        }
-  
-         return ResponseEntity.ok().body(url);
-
+    if (shortUrl == null) {
+      return ResponseEntity.badRequest().body(null);
     }
+    String url = null;
+    try {
+      url = urlShortnerService.getUrl(shortUrl);
+    } catch (UrlNotFoundException e) {
+      return ResponseEntity.badRequest().body(null);
+    }
+
+    if (url == null) {
+      return ResponseEntity.ok().body(null);
+    }
+
+    return ResponseEntity.ok().body(url);
+
+  }
 }

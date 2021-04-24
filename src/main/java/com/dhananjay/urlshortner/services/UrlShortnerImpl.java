@@ -19,18 +19,17 @@ public class UrlShortnerImpl implements UrlShortner {
     @Override
     public String registerNewUrl(String longUrl) {
 
-        StringBuilder sb= new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
         Random r = new Random();
 
-        for(int i=0;i<9;i++)
-        sb.append((char)(r.nextInt(26) + 'a'));
+        for (int i = 0; i < 9; i++)
+            sb.append((char) (r.nextInt(26) + 'a'));
 
-        String key="http://UrlShort.com/"+sb.toString();
+        String key = "http://UrlShort.com/" + sb.toString();
 
-        UrlEntity urlEntity= new UrlEntity(key,longUrl);
+        UrlEntity urlEntity = new UrlEntity(key, longUrl);
         urlRepository.save(urlEntity);
-      
 
         return key;
     }
@@ -38,12 +37,10 @@ public class UrlShortnerImpl implements UrlShortner {
     @Override
     public String getUrl(String shortUrl) throws UrlNotFoundException {
 
-      UrlEntity urlEntity =urlRepository.findById(shortUrl).orElseThrow(()->new UrlNotFoundException());
-     
+        UrlEntity urlEntity = urlRepository.findById(shortUrl).orElseThrow(() -> new UrlNotFoundException());
+
         return urlEntity.getLongUrl();
-        
+
     }
 
-  
-    
 }
